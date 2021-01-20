@@ -12,13 +12,13 @@ before_install:
   - echo "$ HEROKU_PASSWORD" | docker login -u "$ HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 script:
-  - docker run -t  -f Dockerfile
-  - docker tag ci-reactjs-travis/travis-ci registry.heroku.com/ci-reactjs-travis/web
+  - docker run -t doviethoang093/test-travis -f Dockerfile
+  - docker tag doviethoang093/test-travis registry.heroku.com/ci-reactjs-travis/web
 deploy:
   provider: script
   script:
     # push to dockerhub & heroku
-    docker push ci-reactjs-travis/travis-ci;
+    docker push doviethoang093/test-travis;
     docker push registry.heroku.com/ci-reactjs-travis/web;
     heroku container:release web --app travis-ci;
   on:
