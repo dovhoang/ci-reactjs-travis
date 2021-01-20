@@ -1,0 +1,25 @@
+sudo: required
+language: node_js
+node_js:
+  - "9"
+
+services:
+  - docker
+
+before_install:
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$ HEROKU_PASSWORD" | docker login -u "$ HEROKU_USERNAME" --password-stdin registry.heroku.com
+
+script:
+  - docker run -t  -f Dockerfile
+  - docker tag ci-reactjs-travis/travis-ci registry.heroku.com/ci-reactjs-travis/web
+deploy:
+  provider: script
+  script:
+    # push to dockerhub & heroku
+    docker push ci-reactjs-travis/travis-ci;
+    docker push registry.heroku.com/ci-reactjs-travis/web;
+    heroku container:release web --app travis-ci;
+  on:
+    branch: main
