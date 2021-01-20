@@ -20,6 +20,6 @@ deploy:
     # push to dockerhub & heroku
     docker push doviethoang093/test-travis;
     docker push registry.heroku.com/ci-reactjs-travis/web;
-    heroku container:release web --app travis-ci;
+    heroku container:release web --app ci-reactjs-travis;
   on:
     branch: main
