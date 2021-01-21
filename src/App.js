@@ -1,21 +1,17 @@
-
+import React ,{useEffect} from 'react'
 import './App.css';
 
 function App() {
+  //let src= process.env.REACT_APP_BASE_URL;
+  let src= "https://picsum.photos/id/237/200/300";
+
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          Do Viet Hoang new
+          picture
         </p> 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src = {process.env.REACT_APP_BASE_URL}/>
       </header>
     </div>
   );
