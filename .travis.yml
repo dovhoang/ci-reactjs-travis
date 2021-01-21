@@ -17,6 +17,7 @@ deploy:
     # push to dockerhub & heroku
     docker push doviethoang093/docker-travis;
     docker push registry.heroku.com/ci-reactjs-travis/web;
+    heroku config:set REACT_APP_BASE_URL=https://picsum.photos/seed/picsum/200/300;
     heroku container:release web --app ci-reactjs-travis;
   on:
     branch: main
