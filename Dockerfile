@@ -1,11 +1,18 @@
-FROM node:12-alpine
+FROM node:9-alpine
 
-WORKDIR /app
+# this makes the build fail in travis ! see https://github.com/nodejs/docker-node/issues/661
+# RUN npm install --global yarn
 
-COPY package.json /app
+COPY package.json .
+COPY yarn.lock .
 
-RUN yarn install && yarn cache clean
+RUN yarn install; \
+    yarn global add serve
 
-COPY . /app
+COPY . . 
+RUN yarn build
 
-CMD ["yarn", "run", "build"]
+ENV NODE_ENV=production
+
+EXPOSE 3000
+CMD serve -p $PORT -s build
