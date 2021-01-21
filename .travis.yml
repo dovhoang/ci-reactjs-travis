@@ -15,8 +15,8 @@ deploy:
   provider: script
   script:
     # push to dockerhub & heroku
-    docker push doviethoang093/docker-travis
-    docker push registry.heroku.com/ci-reactjs-travis/web
-    heroku container:release web --app ci-reactjs-travis
+    docker push doviethoang093/docker-travis;
+    docker push registry.heroku.com/ci-reactjs-travis/web;
+    heroku container:release web --app ci-reactjs-travis;
   on:
     branch: main
