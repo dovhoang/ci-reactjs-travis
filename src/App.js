@@ -7,6 +7,7 @@ function App() {
 
   return (
     <div className="App">
+      {console.log(process.env.REACT_APP_BASE_URL)}
       <header className="App-header">
         <p>
           picture
