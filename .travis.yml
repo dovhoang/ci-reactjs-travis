@@ -9,7 +9,7 @@ before_install:
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 script:
-  - docker build -t doviethoang093/docker-travis -f Dockerfile
+  - docker build -t doviethoang093/docker-travis -f Dockerfile .
   - docker tag doviethoang093/docker-travis registry.heroku.com/ci-reactjs-travis/web
 deploy:
   provider: script
